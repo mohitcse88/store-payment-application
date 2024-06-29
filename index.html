@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Payment App</title>
+    <!-- CSS Styleshet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Store Payment App</h1>
+        <form id="paymentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <button type="submit">Submit Payment</button>
+        </form>
+        <div id="database">
+            <h2>Stored Payments</h2>
+            <ul id="paymentList"></ul>
+        </div>
+        <div id="dailyTotal">
+            <h2>Daily Total</h2>
+            <p id="totalAmount">&#x20b9;0</p>
+        </div>
+        <div id="controls">
+            <button id="deleteDailyData">Delete Today's Data</button>
+        </div>
+    </div>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- JavaScript -->
+    <div style="margin-left: 84px;">
+        <h2> Calculator</h>
+            <input style="margin-bottom: 10px;" type="number" id="num1" placeholder="Enter first number">
+            <input type="number" id="num2" placeholder="Enter second number">
+            <br><br>
+            <button style="color: rgb(246, 12, 12); font-size: large; background-color: rgb(214, 162, 99);"
+                onclick="calculate('add')">+</button>
+            <button style="color: rgb(244, 4, 4); font-size: large; background-color: rgb(131, 190, 210);"
+                onclick="calculate('subtract')">-</button>
+            <button style="color: rgb(255, 3, 3); font-size: large; background-color: rgb(229, 199, 122);"
+                onclick="calculate('multiply')">*</button>
+            <button style="color: rgb(246, 12, 12); font-size: large;" onclick="calculate('divide')">/</button>
+            <br><br>
+            <h3>Result: <span id="result"></span></h3>
+
+            <script>
+                function calculate(operation) {
+                    var num1 = parseFloat(document.getElementById('num1').value);
+                    var num2 = parseFloat(document.getElementById('num2').value);
+                    var result;
+
+                    if (isNaN(num1) || isNaN(num2)) {
+                        alert("Please enter valid numbers");
+                        return;
+                    }
+
+                    switch (operation) {
+                        case 'add':
+                            result = num1 + num2;
+                            break;
+                        case 'subtract':
+                            result = num1 - num2;
+                            break;
+                        case 'multiply':
+                            result = num1 * num2;
+                            break;
+                        case 'divide':
+                            if (num2 === 0) {
+                                alert("Cannot divide by zero");
+                                return;
+                            }
+                            result = num1 / num2;
+                            break;
+                        default:
+                            alert("Invalid operation");
+                            return;
+                    }
+
+                    document.getElementById('result').innerText = result;
+                }
+            </script>
+    </div>
+</body>
+
+</html>
